@@ -27,6 +27,10 @@ jobs:
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
       - name: Setup node
+        env:
+          APIURL: ${{ secrets.APIURL }}
+          TELEGRAM_CHATID: ${{ secrets.TELEGRAM_CHATID }}
+          MATCHURL: ${{ secrets.MATCHURL }}
         uses: actions/setup-node@v1.4.3
         with:
           node-version: ${{ matrix.node }}
