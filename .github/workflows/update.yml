@@ -1,0 +1,35 @@
+name: live-score-update
+
+on:
+  # schedule:
+    # every 10 minutes the job will run
+  #  - cron: "*/10 * * * *"
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node: [ '12' ]
+    name: Node ${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: Cache node modules
+        uses: actions/cache@v2.1.1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: | 
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: Setup node
+        uses: actions/setup-node@v1.4.3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install yarn
+      - run: yarn install
+      - run: yarn push

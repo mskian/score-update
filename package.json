@@ -1,0 +1,25 @@
+{
+  "name": "score-update",
+  "version": "1.0.0",
+  "description": "Get Live Cricket Score.",
+  "main": "score.js",
+  "scripts": {
+    "push" : "node score.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cricket",
+    "livescore"
+  ],
+  "author": "Santhosh Veer",
+  "license": "MIT",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/mskian/score-update.git"
+	},
+	"bugs": "https://github.com/mskian/score-update/issues",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1"
+  }
+}
